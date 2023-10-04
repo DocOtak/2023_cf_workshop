@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>BCP 14, 2023 CF Workshop</title>
+
+  <link rel="stylesheet" href="dist/reset.css">
+  <link rel="stylesheet" href="dist/reveal.css">
+  <link rel="stylesheet" href="dist/theme/black.css">
+
+  <!-- Theme used for syntax highlighted code -->
+  <link rel="stylesheet" href="plugin/highlight/monokai.css">
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section data-markdown>
+        <textarea data-template>
+        # BCP 14
+        ## aka RFC 2119 + RFC 8174
+        We SHOULD adopt it
+
+        <small>2023 CF Workshop, Andrew Barna ([@DocOtak](https://github.com/DocOtak))</small>
+        <br />
+        <small>[GH Issue #258](https://github.com/cf-convention/discuss/issues/258)</small>
+        </textarea>
+      </section>
+
+      <section data-markdown>
+        <textarea data-template>
+        ## Acronyms
+        * <abbr title="Best Current Practice">BCP</abbr>: Best Current Practice
+          * official rules of the IETF that DO NOT affect over the wire data (those become standards)
+        * <abbr title="Request for Comments">RFC</abbr>: Request for Comments
+          * publications that basically can be anything, from DNS ([RFC1035](https://www.rfc-editor.org/rfc/rfc1035)) to Coffee Pots ([RFC2324](https://www.rfc-editor.org/rfc/rfc2324))
+        * <abbr title="Internet Engineering Task Force">IETF</abbr> Internet Engineering Task Force
+          * The most well known publisher of RFCs
+          * They also basically make the internet work
+        </textarea>
+      </section>
+
+      <section data-markdown>
+        <textarea data-template>
+          ## What is BCP 14?
+          * Two RFCs combined
+          * [RFC 2119](https://www.rfc-editor.org/rfc/rfc2119.txt) specifies key words that indicate requirement levels in a document
+          * [RFC 8174](https://www.rfc-editor.org/rfc/rfc8174.txt) clarifies that key words are a requirement level only when in all UPPERCASE letters
+        </textarea>
+      </section>
+
+      <section data-markdown>
+        <textarea data-template>
+          ## What requirement levels?
+          * Absolutes
+            * MUST, REQUIRED, SHALL, MUST NOT, SHALL NOT
+          * Recommendations
+            * SHOULD, RECOMMENDED, SHOULD NOT, NOT RECOMMENDED
+          * Truly optional
+            * MAY, OPTIONAL
+        </textarea>
+      </section>
+
+      <section data-markdown>
+        <textarea data-template>
+          ## What do we do now?
+          * No explicit statement about key words
+          * A [Conformance Requirements and Recommendations](https://cfconventions.org/cf-conventions/conformance.html) document is updated with every CF Document
+            * Uses the many of the same key words in [RFC 2119](https://www.rfc-editor.org/rfc/rfc2119.txt)
+            * Not part of the CF Document itself (yet?)
+            * The CF Document itself takes precedence in conflicts
+        </textarea>
+      </section>
+
+      <section data-markdown>
+        <textarea data-template>
+          ## Problems with Status Quo?
+          * Requirements and recommendations in the CF Document itself can be ambiguous
+          * Somewhat regular discussions about requirements occur
+          * Many (myself included) assume that [RFC 2119](https://www.rfc-editor.org/rfc/rfc2119.txt) key words indicate requirement levels in the CF Document anyway
+            * Leads to conflicts such as "may" appearing a "Requirements" section of the [Conformance Requirements and Recommendations](https://cfconventions.org/cf-conventions/conformance.html) document
+        </textarea>
+      </section>
+
+      <section data-markdown>
+        <textarea data-template>
+          ## How to Adopt BCP 14
+          * Include the following text near the start of the CF Document
+            * The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all capitals, as shown here.
+          * Update the CF Document to use those key words (easy right?)
+        </textarea>
+      </section>
+
+      <section data-markdown>
+        <textarea data-template>
+          ## Advantages to Adopting BCP 14
+          * Clarity
+            * Clearly indicates that a word represents a requirement when they exist in the CF Document
+            * Disambiguates what the key words mean when used to indicate requirements
+          * Rigor (my opinion)
+            * Makes CF look like a "real" internet standard
+        </textarea>
+      </section>
+      <section data-markdown>
+        <textarea data-template>
+          ## Disadvantages to BCP 14
+          * Puts additional burden on proposed changes
+            * Though we already argue about requirement levels when something is proposed
+          * The existing document contents will need to be updated, that takes work
+            * Existing ambiguities need to be resolved up front
+            * Inadvertent requirement level changes
+          * Something I cannot think of?
+        </textarea>
+      </section>
+
+      <section data-markdown>
+        <textarea data-template>
+          ## Implementation
+          * Adopting BCP 14 will touch *every* part of the CF Document
+          * Two Potential ways:
+            * Gradual
+            * Single Update
+        </textarea>
+      </section>
+
+      <section>
+      <section data-markdown>
+        <textarea data-template>
+          ## Gradual Adoption
+          * The key word text can be added to the CF document without any other changes and the meaning of the existing document is mostly unchanged
+          * Slowly update in small change sets instances of BCP 14 key words to their UPPERCASE variants
+          * Probably include some text that BCP 14 adoption is a work in progress
+          * Any pending CF Document changes get updated first
+        </textarea>
+      </section>
+      <section data-markdown>
+        <textarea data-template>
+          ## Advantages
+          * Work occurs in the main branch where it can be seen by others not directly involved
+            * Work in a branch would be also be visible, but not immediately obvious
+          * Small change sets that are easier to reason about
+            * Easier to catch inadvertent requirement changes with small changes
+          * Completed sections get BCP 14 benefits sooner
+          * Self syncs with other updates
+        </textarea>
+      </section>
+      <section data-markdown>
+        <textarea data-template>
+          ## Disadvantages
+          * Confusion caused by partial implementation
+          * Might become a blocker
+            * We probably don't want a partially implemented document to become CF 1.x
+          * Pending changes would need updating
+        </textarea>
+      </section>
+      <section data-markdown>
+        <textarea data-template>
+          ## Summary
+          * Easy for maintainers
+          * More confusing for readers and contributors
+        </textarea>
+      </section>
+      </section>
+
+      <section>
+      <section data-markdown>
+        <textarea data-template>
+          ## Single Update
+          * Work occurs in a separate (public) branch of the CF Document
+          * Can be done the same as Gradual in terms of work flow
+            * Pull requests to the branch not main
+          * Changes to the CF Document main branch occur in parallel
+        </textarea>
+      </section>
+      <section data-markdown>
+        <textarea data-template>
+          ## Advantages
+          * Work occurs in a branch where it will not interfere with other changes and updates
+          * Existing pending changes can go in as is
+          * There will be a single date of adoption when merged
+            * A date we can point to when pending updates need to conform
+        </textarea>
+      </section>
+      <section data-markdown>
+        <textarea data-template>
+          ## Disadvantages
+          * Syncing changes from the main branch might be difficult
+          * Won't become a blocker
+            * If the BCP 14 update isn't ready, CF 1.x can still be published on time
+        </textarea>
+      </section>
+      <section data-markdown>
+        <textarea data-template>
+          ## Summary
+          * Easy for readers and existing contributors
+          * Maybe harder for maintainers
+        </textarea>
+      </section>
+      </section>
+
+      <section data-markdown>
+        <textarea data-template>
+          ## Decisions and Discussion
+          * Should we Adopt BCP 14?
+          * How should we implement if yes?
+        </textarea>
+      </section>
+    </div>
+  </div>
+
+  <script src="dist/reveal.js"></script>
+  <script src="plugin/notes/notes.js"></script>
+  <script src="plugin/markdown/markdown.js"></script>
+  <script src="plugin/highlight/highlight.js"></script>
+  <script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+      hash: true,
+
+      width: 960,
+        height: 700,
+
+      // Learn about plugins: https://revealjs.com/plugins/
+      plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+    });
+  </script>
+</body>
+
+</html>
